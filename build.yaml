@@ -1,10 +1,7 @@
 targets:
     $default:
         builders:
-            web3_contract_generator|web3_gen:
-                generate_for:
-                    - test/**_test.dart
-                    - lib/**.dart
+            web3_contract_generator|web3_gen: {}
 
 builders:
   web3_gen:

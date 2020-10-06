@@ -184,7 +184,7 @@ packages:
     source: hosted
     version: "0.10.11"
   glob:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: glob
       url: "https://pub.dartlang.org"
@@ -247,7 +247,7 @@ packages:
     source: hosted
     version: "0.6.2"
   json_annotation:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: json_annotation
       url: "https://pub.dartlang.org"
@@ -260,20 +260,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.2"
-  json_serializable:
-    dependency: "direct dev"
-    description:
-      name: json_serializable
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.5.0"
-  logger:
-    dependency: "direct main"
-    description:
-      name: logger
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.9.4"
   logging:
     dependency: "direct main"
     description:
@@ -407,20 +393,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.3"
-  source_gen:
-    dependency: "direct main"
-    description:
-      name: source_gen
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.9.7+1"
-  source_gen_test:
-    dependency: "direct dev"
-    description:
-      name: source_gen_test
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.1+1"
   source_map_stack_trace:
     dependency: transitive
     description:

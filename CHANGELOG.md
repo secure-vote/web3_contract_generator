@@ -1,3 +1,11 @@
+## 0.1.1
+
+- Add a half decent readme
+- Add samples to readme
+- Clean up build.yaml situation
+- Clean up dependencies
+- Clean up tests
+
 ## 0.1.0
 
 - Initial version

@@ -14,6 +14,21 @@ Add these dependencies:
 
 Then run: `pub run build_runner build`
 
+### Options
+
+You can customise which files are used for generation (or manually add the build step, etc) in your build.yaml file:
+
+```
+targets:
+    $default:
+        builders:
+            web3_contract_generator|web3_gen:
+                generate_for:
+                    include:
+                    - "**/*.abi"
+                    - "**/*.abi.json"
+```
+
 ## Generated Code
 
 Here's a sample of the code generated:
