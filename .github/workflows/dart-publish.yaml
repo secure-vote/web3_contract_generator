@@ -12,5 +12,5 @@ jobs:
         uses: k-paxian/dart-package-publisher@master
         with:
           dryRunOnly: true
-          accessToken: ${{ secrets.OAUTH_ACCESS_TOKEN }}
-          refreshToken: ${{ secrets.OAUTH_REFRESH_TOKEN }}
+          accessToken: ${{ secrets.PUB_LISH_OAUTH_ACCESS_TOKEN }}
+          refreshToken: ${{ secrets.PUB_LISH_OAUTH_REFRESH_TOKEN }}
