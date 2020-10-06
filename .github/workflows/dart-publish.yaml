@@ -3,21 +3,21 @@ name: Dart Publish
 on: push
 
 jobs:
-  name: build and push
-  runs-on: ubuntu-latest
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-    - name: Run Super-Linter
-      uses: github/super-linter@v3
-      env:
-        DEFAULT_BRANCH: main
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - uses: cedx/setup-dart@v2
-    - run: pub get
-    - run: pub run test
-    # - name: '>> Dart package <<'
-    #   uses: k-paxian/dart-package-publisher@master
-    #   with:
-    #     accessToken: ${{ secrets.OAUTH_ACCESS_TOKEN }}
-    #     refreshToken: ${{ secrets.OAUTH_REFRESH_TOKEN }}
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run Super-Linter
+        uses: github/super-linter@v3
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: cedx/setup-dart@v2
+      - run: pub get
+      - run: pub run test
+      # - name: '>> Dart package <<'
+      #   uses: k-paxian/dart-package-publisher@master
+      #   with:
+      #     accessToken: ${{ secrets.OAUTH_ACCESS_TOKEN }}
+      #     refreshToken: ${{ secrets.OAUTH_REFRESH_TOKEN }}
