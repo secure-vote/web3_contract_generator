@@ -1,8 +1,8 @@
 name: web3_contract_generator
 description: A sample command-line application.
 version: '0.1.0'
-# version: 1.0.0
-# homepage: https://www.example.com
+homepage: https://github.com/xertrov/web3_contract_generator
+repository: https://github.com/xertrov/web3_contract_generator
 
 environment:
   sdk: '>=2.10.0 <3.0.0'
