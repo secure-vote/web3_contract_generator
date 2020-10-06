@@ -1,16 +1,10 @@
 targets:
     $default:
         builders:
-            json_serializable:
-                options:
-                    disallow_unrecognized_keys: true
-                    explicit_to_json: true
-                    nullable: false
             web3_contract_generator|web3_gen:
                 generate_for:
                     - test/**_test.dart
                     - lib/**.dart
-
 
 builders:
   web3_gen:
@@ -22,7 +16,6 @@ builders:
         '.abi.json': [".w3.dart"]
     auto_apply: dependents
     build_to: source
-    #applies_builders: ["source_gen|combining_builder"]
     defaults:
         generate_for:
             include:
