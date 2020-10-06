@@ -8,14 +8,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - uses: cedx/setup-dart@v2
+      - run: pub get
+      - run: pub run test
       - name: Run Super-Linter
         uses: github/super-linter@v3
         env:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: cedx/setup-dart@v2
-      - run: pub get
-      - run: pub run test
       # - name: '>> Dart package <<'
       #   uses: k-paxian/dart-package-publisher@master
       #   with:
