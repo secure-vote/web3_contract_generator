@@ -5,13 +5,14 @@ import 'package:dartz/dartz.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:web3_contract_generator/helpers.dart';
 
+const EMPTY_ABI = """[]
+""";
 final EthereumAddress _zeroAddr =
     EthereumAddress(Uint8List(20)..fillRange(0, 20, 0));
 EthereumAddress _addrOrDefault(EthereumAddress addr) => addr ?? _zeroAddr;
 
 class emptyContract {
-  final ContractAbi $abi =
-      ContractAbi.fromJson(File("empty.abi").readAsStringSync(), "empty");
+  final ContractAbi $abi = ContractAbi.fromJson(EMPTY_ABI, "empty");
   EthereumAddress $addr;
   DeployedContract $contract;
   Web3Client $client;

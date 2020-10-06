@@ -5,13 +5,14 @@ import 'package:dartz/dartz.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:web3_contract_generator/helpers.dart';
 
+const SVPAYMENTS_ABI =
+    """[{"constant":false,"inputs":[{"name":"democHash","type":"bytes32"}],"name":"payForDemocracy","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[{"name":"democHash","type":"bytes32"},{"name":"additionalSeconds","type":"uint256"},{"name":"ref","type":"bytes32"}],"name":"giveTimeToDemoc","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"amount","type":"uint256"}],"name":"setBasicCentsPricePer30Days","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getVersion","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"pure","type":"function"},{"constant":false,"inputs":[],"name":"doLockdown","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"democHash","type":"bytes32"}],"name":"getDenyPremium","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"newOwner","type":"address"}],"name":"setOwner","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"newOwner","type":"address"}],"name":"emergencySetOwner","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"minorEditsAddr","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"token","type":"address"}],"name":"reclaimToken","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"c","type":"uint256"}],"name":"centsToWei","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"a","type":"address"}],"name":"hasPermissions","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"n","type":"uint256"}],"name":"getAdminLog","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"a","type":"address"}],"name":"isAdmin","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"democHash","type":"bytes32"},{"name":"isPremiumDenied","type":"bool"}],"name":"setDenyPremium","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"democHash","type":"bytes32"}],"name":"accountInGoodStanding","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"a","type":"address"}],"name":"setMinorEditsAddr","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"currAdminEpoch","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"democHash","type":"bytes32"}],"name":"downgradeToBasic","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getAdminLogN","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"incAdminEpoch","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"a","type":"address"},{"name":"_givePerms","type":"bool"}],"name":"setAdmin","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"payoutAll","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"newSC","type":"address"}],"name":"upgradeMe","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getBasicBallotsPer30Days","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"adminsDisabledForever","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getMinWeiForDInit","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"e","type":"address"},{"name":"_editPerms","type":"bool"}],"name":"setPermissions","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"newPayTo","type":"address"}],"name":"setPayTo","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"democHash","type":"bytes32"}],"name":"getFreeExtension","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getPaymentLogN","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"w","type":"uint256"}],"name":"weiToCents","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"emergencyAdmin","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"democHash","type":"bytes32"}],"name":"getPremiumStatus","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getPremiumMultiplier","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"adminLockdown","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getWeiPerCent","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"newAdmin","type":"address"}],"name":"upgradeMeAdmin","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"amount","type":"uint256"}],"name":"setBasicBallotsPer30Days","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getBasicExtraBallotFeeWei","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"oldSC","type":"address"},{"name":"newSC","type":"address"}],"name":"upgradePermissionedSC","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"democHash","type":"bytes32"},{"name":"hasFreeExt","type":"bool"}],"name":"setFreeExtension","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"democHash","type":"bytes32"}],"name":"upgradeToPremium","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"wpc","type":"uint256"}],"name":"setWeiPerCent","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"democHash","type":"bytes32"}],"name":"getAccount","outputs":[{"name":"isPremium","type":"bool"},{"name":"lastPaymentTs","type":"uint256"},{"name":"paidUpTill","type":"uint256"},{"name":"hasFreeExtension","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getUsdEthExchangeRate","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"m","type":"uint8"}],"name":"setPremiumMultiplier","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getBasicCentsPricePer30Days","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getPremiumCentsPricePer30Days","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"democHash","type":"bytes32"}],"name":"getSecondsRemaining","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getPayTo","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"amount","type":"uint256"}],"name":"setMinWeiForDInit","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"amount","type":"uint256"}],"name":"weiBuysHowManySeconds","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"n","type":"uint256"}],"name":"getPaymentLog","outputs":[{"name":"_external","type":"bool"},{"name":"_democHash","type":"bytes32"},{"name":"_seconds","type":"uint256"},{"name":"_ethValue","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"democHash","type":"bytes32"}],"name":"doFreeExtension","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[{"name":"_emergencyAdmin","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"payable":true,"stateMutability":"payable","type":"fallback"},{"anonymous":false,"inputs":[{"indexed":false,"name":"payTo","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"PayoutAll","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"editAddr","type":"address"}],"name":"PermissionError","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"editAddr","type":"address"}],"name":"PermissionGranted","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"editAddr","type":"address"}],"name":"PermissionRevoked","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"oldSC","type":"address"},{"indexed":false,"name":"newSC","type":"address"}],"name":"PermissionsUpgraded","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"oldSC","type":"address"},{"indexed":false,"name":"newSC","type":"address"}],"name":"SelfUpgrade","type":"event"},{"anonymous":false,"inputs":[],"name":"AdminLockdown","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"newAdmin","type":"address"}],"name":"AdminAdded","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"oldAdmin","type":"address"}],"name":"AdminRemoved","type":"event"},{"anonymous":false,"inputs":[],"name":"AdminEpochInc","type":"event"},{"anonymous":false,"inputs":[],"name":"AdminDisabledForever","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"newOwner","type":"address"}],"name":"OwnerChanged","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"democHash","type":"bytes32"}],"name":"UpgradedToPremium","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"democHash","type":"bytes32"},{"indexed":false,"name":"additionalSeconds","type":"uint256"},{"indexed":false,"name":"ref","type":"bytes32"}],"name":"GrantedAccountTime","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"democHash","type":"bytes32"},{"indexed":false,"name":"additionalSeconds","type":"uint256"}],"name":"AccountPayment","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"amount","type":"uint256"}],"name":"SetCommunityBallotFee","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"amount","type":"uint256"}],"name":"SetBasicCentsPricePer30Days","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"multiplier","type":"uint8"}],"name":"SetPremiumMultiplier","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"democHash","type":"bytes32"}],"name":"DowngradeToBasic","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"democHash","type":"bytes32"}],"name":"UpgradeToPremium","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"weiPerCent","type":"uint256"}],"name":"SetExchangeRate","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"democHash","type":"bytes32"}],"name":"FreeExtension","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"amount","type":"uint256"}],"name":"SetBallotsPer30Days","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"democHash","type":"bytes32"},{"indexed":false,"name":"hasFreeExt","type":"bool"}],"name":"SetFreeExtension","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"democHash","type":"bytes32"},{"indexed":false,"name":"isPremiumDenied","type":"bool"}],"name":"SetDenyPremium","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"payTo","type":"address"}],"name":"SetPayTo","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"minorEditsAddr","type":"address"}],"name":"SetMinorEditsAddr","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"amount","type":"uint256"}],"name":"SetMinWeiForDInit","type":"event"}]""";
 final EthereumAddress _zeroAddr =
     EthereumAddress(Uint8List(20)..fillRange(0, 20, 0));
 EthereumAddress _addrOrDefault(EthereumAddress addr) => addr ?? _zeroAddr;
 
 class SVPaymentsContract {
-  final ContractAbi $abi = ContractAbi.fromJson(
-      File("SVPayments.abi").readAsStringSync(), "SVPayments");
+  final ContractAbi $abi = ContractAbi.fromJson(SVPAYMENTS_ABI, "SVPayments");
   EthereumAddress $addr;
   DeployedContract $contract;
   Web3Client $client;
@@ -21,11 +22,11 @@ class SVPaymentsContract {
   }
 
   Future<String> payForDemocracy(
-      FixedBytes democHash, Wallet wallet, TransactionPayable tx) async {
+      Uint8List democHash, Wallet wallet, TransactionPayable tx) async {
     var _f = $contract.function("payForDemocracy");
-    var params = _f.encodeCall(<dynamic>[democHash]);
+    var _params = _f.encodeCall(<dynamic>[democHash]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -33,16 +34,12 @@ class SVPaymentsContract {
     return txid;
   }
 
-  Future<String> giveTimeToDemoc(
-      FixedBytes democHash,
-      UintType additionalSeconds,
-      FixedBytes ref,
-      Wallet wallet,
-      TransactionNotPayable tx) async {
+  Future<String> giveTimeToDemoc(Uint8List democHash, BigInt additionalSeconds,
+      Uint8List ref, Wallet wallet, TransactionNotPayable tx) async {
     var _f = $contract.function("giveTimeToDemoc");
-    var params = _f.encodeCall(<dynamic>[democHash, additionalSeconds, ref]);
+    var _params = _f.encodeCall(<dynamic>[democHash, additionalSeconds, ref]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -51,11 +48,11 @@ class SVPaymentsContract {
   }
 
   Future<String> setBasicCentsPricePer30Days(
-      UintType amount, Wallet wallet, TransactionNotPayable tx) async {
+      BigInt amount, Wallet wallet, TransactionNotPayable tx) async {
     var _f = $contract.function("setBasicCentsPricePer30Days");
-    var params = _f.encodeCall(<dynamic>[amount]);
+    var _params = _f.encodeCall(<dynamic>[amount]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -63,23 +60,23 @@ class SVPaymentsContract {
     return txid;
   }
 
-  Future<UintType> getVersion({EthereumAddress from}) async {
+  Future<BigInt> getVersion({EthereumAddress from}) async {
     var _f = $contract.function("getVersion");
-    var params = _f.encodeCall(<dynamic>[]);
+    var _params = <dynamic>[];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as UintType;
+    return result[0] as BigInt;
   }
 
   Future<String> doLockdown(Wallet wallet, TransactionNotPayable tx) async {
     var _f = $contract.function("doLockdown");
-    var params = _f.encodeCall(<dynamic>[]);
+    var _params = _f.encodeCall(<dynamic>[]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -87,25 +84,25 @@ class SVPaymentsContract {
     return txid;
   }
 
-  Future<BoolType> getDenyPremium(FixedBytes democHash,
+  Future<bool> getDenyPremium(Uint8List democHash,
       {EthereumAddress from}) async {
     var _f = $contract.function("getDenyPremium");
-    var params = _f.encodeCall(<dynamic>[democHash]);
+    var _params = <dynamic>[democHash];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as BoolType;
+    return result[0] as bool;
   }
 
   Future<String> setOwner(
-      AddressType newOwner, Wallet wallet, TransactionNotPayable tx) async {
+      EthereumAddress newOwner, Wallet wallet, TransactionNotPayable tx) async {
     var _f = $contract.function("setOwner");
-    var params = _f.encodeCall(<dynamic>[newOwner]);
+    var _params = _f.encodeCall(<dynamic>[newOwner]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -114,11 +111,11 @@ class SVPaymentsContract {
   }
 
   Future<String> emergencySetOwner(
-      AddressType newOwner, Wallet wallet, TransactionNotPayable tx) async {
+      EthereumAddress newOwner, Wallet wallet, TransactionNotPayable tx) async {
     var _f = $contract.function("emergencySetOwner");
-    var params = _f.encodeCall(<dynamic>[newOwner]);
+    var _params = _f.encodeCall(<dynamic>[newOwner]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -126,24 +123,24 @@ class SVPaymentsContract {
     return txid;
   }
 
-  Future<AddressType> minorEditsAddr({EthereumAddress from}) async {
+  Future<EthereumAddress> minorEditsAddr({EthereumAddress from}) async {
     var _f = $contract.function("minorEditsAddr");
-    var params = _f.encodeCall(<dynamic>[]);
+    var _params = <dynamic>[];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as AddressType;
+    return result[0] as EthereumAddress;
   }
 
   Future<String> reclaimToken(
-      AddressType token, Wallet wallet, TransactionNotPayable tx) async {
+      EthereumAddress token, Wallet wallet, TransactionNotPayable tx) async {
     var _f = $contract.function("reclaimToken");
-    var params = _f.encodeCall(<dynamic>[token]);
+    var _params = _f.encodeCall(<dynamic>[token]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -151,60 +148,60 @@ class SVPaymentsContract {
     return txid;
   }
 
-  Future<UintType> centsToWei(UintType c, {EthereumAddress from}) async {
+  Future<BigInt> centsToWei(BigInt c, {EthereumAddress from}) async {
     var _f = $contract.function("centsToWei");
-    var params = _f.encodeCall(<dynamic>[c]);
+    var _params = <dynamic>[c];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as UintType;
+    return result[0] as BigInt;
   }
 
-  Future<BoolType> hasPermissions(AddressType a, {EthereumAddress from}) async {
+  Future<bool> hasPermissions(EthereumAddress a, {EthereumAddress from}) async {
     var _f = $contract.function("hasPermissions");
-    var params = _f.encodeCall(<dynamic>[a]);
+    var _params = <dynamic>[a];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as BoolType;
+    return result[0] as bool;
   }
 
-  Future<AddressType> getAdminLog(UintType n, {EthereumAddress from}) async {
+  Future<EthereumAddress> getAdminLog(BigInt n, {EthereumAddress from}) async {
     var _f = $contract.function("getAdminLog");
-    var params = _f.encodeCall(<dynamic>[n]);
+    var _params = <dynamic>[n];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as AddressType;
+    return result[0] as EthereumAddress;
   }
 
-  Future<BoolType> isAdmin(AddressType a, {EthereumAddress from}) async {
+  Future<bool> isAdmin(EthereumAddress a, {EthereumAddress from}) async {
     var _f = $contract.function("isAdmin");
-    var params = _f.encodeCall(<dynamic>[a]);
+    var _params = <dynamic>[a];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as BoolType;
+    return result[0] as bool;
   }
 
-  Future<String> setDenyPremium(FixedBytes democHash, BoolType isPremiumDenied,
+  Future<String> setDenyPremium(Uint8List democHash, bool isPremiumDenied,
       Wallet wallet, TransactionNotPayable tx) async {
     var _f = $contract.function("setDenyPremium");
-    var params = _f.encodeCall(<dynamic>[democHash, isPremiumDenied]);
+    var _params = _f.encodeCall(<dynamic>[democHash, isPremiumDenied]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -212,25 +209,25 @@ class SVPaymentsContract {
     return txid;
   }
 
-  Future<BoolType> accountInGoodStanding(FixedBytes democHash,
+  Future<bool> accountInGoodStanding(Uint8List democHash,
       {EthereumAddress from}) async {
     var _f = $contract.function("accountInGoodStanding");
-    var params = _f.encodeCall(<dynamic>[democHash]);
+    var _params = <dynamic>[democHash];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as BoolType;
+    return result[0] as bool;
   }
 
   Future<String> setMinorEditsAddr(
-      AddressType a, Wallet wallet, TransactionNotPayable tx) async {
+      EthereumAddress a, Wallet wallet, TransactionNotPayable tx) async {
     var _f = $contract.function("setMinorEditsAddr");
-    var params = _f.encodeCall(<dynamic>[a]);
+    var _params = _f.encodeCall(<dynamic>[a]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -238,24 +235,24 @@ class SVPaymentsContract {
     return txid;
   }
 
-  Future<UintType> currAdminEpoch({EthereumAddress from}) async {
+  Future<BigInt> currAdminEpoch({EthereumAddress from}) async {
     var _f = $contract.function("currAdminEpoch");
-    var params = _f.encodeCall(<dynamic>[]);
+    var _params = <dynamic>[];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as UintType;
+    return result[0] as BigInt;
   }
 
   Future<String> downgradeToBasic(
-      FixedBytes democHash, Wallet wallet, TransactionNotPayable tx) async {
+      Uint8List democHash, Wallet wallet, TransactionNotPayable tx) async {
     var _f = $contract.function("downgradeToBasic");
-    var params = _f.encodeCall(<dynamic>[democHash]);
+    var _params = _f.encodeCall(<dynamic>[democHash]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -263,23 +260,23 @@ class SVPaymentsContract {
     return txid;
   }
 
-  Future<UintType> getAdminLogN({EthereumAddress from}) async {
+  Future<BigInt> getAdminLogN({EthereumAddress from}) async {
     var _f = $contract.function("getAdminLogN");
-    var params = _f.encodeCall(<dynamic>[]);
+    var _params = <dynamic>[];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as UintType;
+    return result[0] as BigInt;
   }
 
   Future<String> incAdminEpoch(Wallet wallet, TransactionNotPayable tx) async {
     var _f = $contract.function("incAdminEpoch");
-    var params = _f.encodeCall(<dynamic>[]);
+    var _params = _f.encodeCall(<dynamic>[]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -287,12 +284,12 @@ class SVPaymentsContract {
     return txid;
   }
 
-  Future<String> setAdmin(AddressType a, BoolType _givePerms, Wallet wallet,
+  Future<String> setAdmin(EthereumAddress a, bool _givePerms, Wallet wallet,
       TransactionNotPayable tx) async {
     var _f = $contract.function("setAdmin");
-    var params = _f.encodeCall(<dynamic>[a, _givePerms]);
+    var _params = _f.encodeCall(<dynamic>[a, _givePerms]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -302,9 +299,9 @@ class SVPaymentsContract {
 
   Future<String> payoutAll(Wallet wallet, TransactionNotPayable tx) async {
     var _f = $contract.function("payoutAll");
-    var params = _f.encodeCall(<dynamic>[]);
+    var _params = _f.encodeCall(<dynamic>[]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -313,11 +310,11 @@ class SVPaymentsContract {
   }
 
   Future<String> upgradeMe(
-      AddressType newSC, Wallet wallet, TransactionNotPayable tx) async {
+      EthereumAddress newSC, Wallet wallet, TransactionNotPayable tx) async {
     var _f = $contract.function("upgradeMe");
-    var params = _f.encodeCall(<dynamic>[newSC]);
+    var _params = _f.encodeCall(<dynamic>[newSC]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -325,48 +322,48 @@ class SVPaymentsContract {
     return txid;
   }
 
-  Future<UintType> getBasicBallotsPer30Days({EthereumAddress from}) async {
+  Future<BigInt> getBasicBallotsPer30Days({EthereumAddress from}) async {
     var _f = $contract.function("getBasicBallotsPer30Days");
-    var params = _f.encodeCall(<dynamic>[]);
+    var _params = <dynamic>[];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as UintType;
+    return result[0] as BigInt;
   }
 
-  Future<BoolType> adminsDisabledForever({EthereumAddress from}) async {
+  Future<bool> adminsDisabledForever({EthereumAddress from}) async {
     var _f = $contract.function("adminsDisabledForever");
-    var params = _f.encodeCall(<dynamic>[]);
+    var _params = <dynamic>[];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as BoolType;
+    return result[0] as bool;
   }
 
-  Future<UintType> getMinWeiForDInit({EthereumAddress from}) async {
+  Future<BigInt> getMinWeiForDInit({EthereumAddress from}) async {
     var _f = $contract.function("getMinWeiForDInit");
-    var params = _f.encodeCall(<dynamic>[]);
+    var _params = <dynamic>[];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as UintType;
+    return result[0] as BigInt;
   }
 
-  Future<String> setPermissions(AddressType e, BoolType _editPerms,
+  Future<String> setPermissions(EthereumAddress e, bool _editPerms,
       Wallet wallet, TransactionNotPayable tx) async {
     var _f = $contract.function("setPermissions");
-    var params = _f.encodeCall(<dynamic>[e, _editPerms]);
+    var _params = _f.encodeCall(<dynamic>[e, _editPerms]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -375,11 +372,11 @@ class SVPaymentsContract {
   }
 
   Future<String> setPayTo(
-      AddressType newPayTo, Wallet wallet, TransactionNotPayable tx) async {
+      EthereumAddress newPayTo, Wallet wallet, TransactionNotPayable tx) async {
     var _f = $contract.function("setPayTo");
-    var params = _f.encodeCall(<dynamic>[newPayTo]);
+    var _params = _f.encodeCall(<dynamic>[newPayTo]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -387,110 +384,110 @@ class SVPaymentsContract {
     return txid;
   }
 
-  Future<BoolType> getFreeExtension(FixedBytes democHash,
+  Future<bool> getFreeExtension(Uint8List democHash,
       {EthereumAddress from}) async {
     var _f = $contract.function("getFreeExtension");
-    var params = _f.encodeCall(<dynamic>[democHash]);
+    var _params = <dynamic>[democHash];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as BoolType;
+    return result[0] as bool;
   }
 
-  Future<UintType> getPaymentLogN({EthereumAddress from}) async {
+  Future<BigInt> getPaymentLogN({EthereumAddress from}) async {
     var _f = $contract.function("getPaymentLogN");
-    var params = _f.encodeCall(<dynamic>[]);
+    var _params = <dynamic>[];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as UintType;
+    return result[0] as BigInt;
   }
 
-  Future<UintType> weiToCents(UintType w, {EthereumAddress from}) async {
+  Future<BigInt> weiToCents(BigInt w, {EthereumAddress from}) async {
     var _f = $contract.function("weiToCents");
-    var params = _f.encodeCall(<dynamic>[w]);
+    var _params = <dynamic>[w];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as UintType;
+    return result[0] as BigInt;
   }
 
-  Future<AddressType> emergencyAdmin({EthereumAddress from}) async {
+  Future<EthereumAddress> emergencyAdmin({EthereumAddress from}) async {
     var _f = $contract.function("emergencyAdmin");
-    var params = _f.encodeCall(<dynamic>[]);
+    var _params = <dynamic>[];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as AddressType;
+    return result[0] as EthereumAddress;
   }
 
-  Future<BoolType> getPremiumStatus(FixedBytes democHash,
+  Future<bool> getPremiumStatus(Uint8List democHash,
       {EthereumAddress from}) async {
     var _f = $contract.function("getPremiumStatus");
-    var params = _f.encodeCall(<dynamic>[democHash]);
+    var _params = <dynamic>[democHash];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as BoolType;
+    return result[0] as bool;
   }
 
-  Future<UintType> getPremiumMultiplier({EthereumAddress from}) async {
+  Future<BigInt> getPremiumMultiplier({EthereumAddress from}) async {
     var _f = $contract.function("getPremiumMultiplier");
-    var params = _f.encodeCall(<dynamic>[]);
+    var _params = <dynamic>[];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as UintType;
+    return result[0] as BigInt;
   }
 
-  Future<BoolType> adminLockdown({EthereumAddress from}) async {
+  Future<bool> adminLockdown({EthereumAddress from}) async {
     var _f = $contract.function("adminLockdown");
-    var params = _f.encodeCall(<dynamic>[]);
+    var _params = <dynamic>[];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as BoolType;
+    return result[0] as bool;
   }
 
-  Future<UintType> getWeiPerCent({EthereumAddress from}) async {
+  Future<BigInt> getWeiPerCent({EthereumAddress from}) async {
     var _f = $contract.function("getWeiPerCent");
-    var params = _f.encodeCall(<dynamic>[]);
+    var _params = <dynamic>[];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as UintType;
+    return result[0] as BigInt;
   }
 
   Future<String> upgradeMeAdmin(
-      AddressType newAdmin, Wallet wallet, TransactionNotPayable tx) async {
+      EthereumAddress newAdmin, Wallet wallet, TransactionNotPayable tx) async {
     var _f = $contract.function("upgradeMeAdmin");
-    var params = _f.encodeCall(<dynamic>[newAdmin]);
+    var _params = _f.encodeCall(<dynamic>[newAdmin]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -498,24 +495,24 @@ class SVPaymentsContract {
     return txid;
   }
 
-  Future<AddressType> owner({EthereumAddress from}) async {
+  Future<EthereumAddress> owner({EthereumAddress from}) async {
     var _f = $contract.function("owner");
-    var params = _f.encodeCall(<dynamic>[]);
+    var _params = <dynamic>[];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as AddressType;
+    return result[0] as EthereumAddress;
   }
 
   Future<String> setBasicBallotsPer30Days(
-      UintType amount, Wallet wallet, TransactionNotPayable tx) async {
+      BigInt amount, Wallet wallet, TransactionNotPayable tx) async {
     var _f = $contract.function("setBasicBallotsPer30Days");
-    var params = _f.encodeCall(<dynamic>[amount]);
+    var _params = _f.encodeCall(<dynamic>[amount]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -523,24 +520,24 @@ class SVPaymentsContract {
     return txid;
   }
 
-  Future<UintType> getBasicExtraBallotFeeWei({EthereumAddress from}) async {
+  Future<BigInt> getBasicExtraBallotFeeWei({EthereumAddress from}) async {
     var _f = $contract.function("getBasicExtraBallotFeeWei");
-    var params = _f.encodeCall(<dynamic>[]);
+    var _params = <dynamic>[];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as UintType;
+    return result[0] as BigInt;
   }
 
-  Future<String> upgradePermissionedSC(AddressType oldSC, AddressType newSC,
-      Wallet wallet, TransactionNotPayable tx) async {
+  Future<String> upgradePermissionedSC(EthereumAddress oldSC,
+      EthereumAddress newSC, Wallet wallet, TransactionNotPayable tx) async {
     var _f = $contract.function("upgradePermissionedSC");
-    var params = _f.encodeCall(<dynamic>[oldSC, newSC]);
+    var _params = _f.encodeCall(<dynamic>[oldSC, newSC]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -548,12 +545,12 @@ class SVPaymentsContract {
     return txid;
   }
 
-  Future<String> setFreeExtension(FixedBytes democHash, BoolType hasFreeExt,
+  Future<String> setFreeExtension(Uint8List democHash, bool hasFreeExt,
       Wallet wallet, TransactionNotPayable tx) async {
     var _f = $contract.function("setFreeExtension");
-    var params = _f.encodeCall(<dynamic>[democHash, hasFreeExt]);
+    var _params = _f.encodeCall(<dynamic>[democHash, hasFreeExt]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -562,11 +559,11 @@ class SVPaymentsContract {
   }
 
   Future<String> upgradeToPremium(
-      FixedBytes democHash, Wallet wallet, TransactionNotPayable tx) async {
+      Uint8List democHash, Wallet wallet, TransactionNotPayable tx) async {
     var _f = $contract.function("upgradeToPremium");
-    var params = _f.encodeCall(<dynamic>[democHash]);
+    var _params = _f.encodeCall(<dynamic>[democHash]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -575,11 +572,11 @@ class SVPaymentsContract {
   }
 
   Future<String> setWeiPerCent(
-      UintType wpc, Wallet wallet, TransactionNotPayable tx) async {
+      BigInt wpc, Wallet wallet, TransactionNotPayable tx) async {
     var _f = $contract.function("setWeiPerCent");
-    var params = _f.encodeCall(<dynamic>[wpc]);
+    var _params = _f.encodeCall(<dynamic>[wpc]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -587,39 +584,38 @@ class SVPaymentsContract {
     return txid;
   }
 
-  Future<Tuple4<BoolType, UintType, UintType, BoolType>> getAccount(
-      FixedBytes democHash,
+  Future<Tuple4<bool, BigInt, BigInt, bool>> getAccount(Uint8List democHash,
       {EthereumAddress from}) async {
     var _f = $contract.function("getAccount");
-    var params = _f.encodeCall(<dynamic>[democHash]);
+    var _params = <dynamic>[democHash];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return Tuple4(result[0] as BoolType, result[1] as UintType,
-        result[2] as UintType, result[3] as BoolType);
+    return Tuple4(result[0] as bool, result[1] as BigInt, result[2] as BigInt,
+        result[3] as bool);
   }
 
-  Future<UintType> getUsdEthExchangeRate({EthereumAddress from}) async {
+  Future<BigInt> getUsdEthExchangeRate({EthereumAddress from}) async {
     var _f = $contract.function("getUsdEthExchangeRate");
-    var params = _f.encodeCall(<dynamic>[]);
+    var _params = <dynamic>[];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as UintType;
+    return result[0] as BigInt;
   }
 
   Future<String> setPremiumMultiplier(
-      UintType m, Wallet wallet, TransactionNotPayable tx) async {
+      BigInt m, Wallet wallet, TransactionNotPayable tx) async {
     var _f = $contract.function("setPremiumMultiplier");
-    var params = _f.encodeCall(<dynamic>[m]);
+    var _params = _f.encodeCall(<dynamic>[m]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -627,61 +623,61 @@ class SVPaymentsContract {
     return txid;
   }
 
-  Future<UintType> getBasicCentsPricePer30Days({EthereumAddress from}) async {
+  Future<BigInt> getBasicCentsPricePer30Days({EthereumAddress from}) async {
     var _f = $contract.function("getBasicCentsPricePer30Days");
-    var params = _f.encodeCall(<dynamic>[]);
+    var _params = <dynamic>[];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as UintType;
+    return result[0] as BigInt;
   }
 
-  Future<UintType> getPremiumCentsPricePer30Days({EthereumAddress from}) async {
+  Future<BigInt> getPremiumCentsPricePer30Days({EthereumAddress from}) async {
     var _f = $contract.function("getPremiumCentsPricePer30Days");
-    var params = _f.encodeCall(<dynamic>[]);
+    var _params = <dynamic>[];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as UintType;
+    return result[0] as BigInt;
   }
 
-  Future<UintType> getSecondsRemaining(FixedBytes democHash,
+  Future<BigInt> getSecondsRemaining(Uint8List democHash,
       {EthereumAddress from}) async {
     var _f = $contract.function("getSecondsRemaining");
-    var params = _f.encodeCall(<dynamic>[democHash]);
+    var _params = <dynamic>[democHash];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as UintType;
+    return result[0] as BigInt;
   }
 
-  Future<AddressType> getPayTo({EthereumAddress from}) async {
+  Future<EthereumAddress> getPayTo({EthereumAddress from}) async {
     var _f = $contract.function("getPayTo");
-    var params = _f.encodeCall(<dynamic>[]);
+    var _params = <dynamic>[];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as AddressType;
+    return result[0] as EthereumAddress;
   }
 
   Future<String> setMinWeiForDInit(
-      UintType amount, Wallet wallet, TransactionNotPayable tx) async {
+      BigInt amount, Wallet wallet, TransactionNotPayable tx) async {
     var _f = $contract.function("setMinWeiForDInit");
-    var params = _f.encodeCall(<dynamic>[amount]);
+    var _params = _f.encodeCall(<dynamic>[amount]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -689,40 +685,39 @@ class SVPaymentsContract {
     return txid;
   }
 
-  Future<UintType> weiBuysHowManySeconds(UintType amount,
+  Future<BigInt> weiBuysHowManySeconds(BigInt amount,
       {EthereumAddress from}) async {
     var _f = $contract.function("weiBuysHowManySeconds");
-    var params = _f.encodeCall(<dynamic>[amount]);
+    var _params = <dynamic>[amount];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return result[0] as UintType;
+    return result[0] as BigInt;
   }
 
-  Future<Tuple4<BoolType, FixedBytes, UintType, UintType>> getPaymentLog(
-      UintType n,
+  Future<Tuple4<bool, Uint8List, BigInt, BigInt>> getPaymentLog(BigInt n,
       {EthereumAddress from}) async {
     var _f = $contract.function("getPaymentLog");
-    var params = _f.encodeCall(<dynamic>[n]);
+    var _params = <dynamic>[n];
     var result = await $client.call(
         sender: _addrOrDefault(from),
         contract: $contract,
         function: _f,
-        params: params,
+        params: _params,
         atBlock: BlockNum.current());
-    return Tuple4(result[0] as BoolType, result[1] as FixedBytes,
-        result[2] as UintType, result[3] as UintType);
+    return Tuple4(result[0] as bool, result[1] as Uint8List,
+        result[2] as BigInt, result[3] as BigInt);
   }
 
   Future<String> doFreeExtension(
-      FixedBytes democHash, Wallet wallet, TransactionNotPayable tx) async {
+      Uint8List democHash, Wallet wallet, TransactionNotPayable tx) async {
     var _f = $contract.function("doFreeExtension");
-    var params = _f.encodeCall(<dynamic>[democHash]);
+    var _params = _f.encodeCall(<dynamic>[democHash]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -730,12 +725,12 @@ class SVPaymentsContract {
     return txid;
   }
 
-  Future<String> $constructor(AddressType _emergencyAdmin, Wallet wallet,
+  Future<String> $constructor(EthereumAddress _emergencyAdmin, Wallet wallet,
       TransactionNotPayable tx) async {
     var _f = $abi.functions.where((f) => f.name == "" && f.isConstructor).first;
-    var params = _f.encodeCall(<dynamic>[_emergencyAdmin]);
+    var _params = _f.encodeCall(<dynamic>[_emergencyAdmin]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
@@ -745,9 +740,9 @@ class SVPaymentsContract {
 
   Future<String> $fallback(Wallet wallet, TransactionPayable tx) async {
     var _f = $abi.functions.where((f) => f.name == "" && f.isDefault).first;
-    var params = _f.encodeCall(<dynamic>[]);
+    var _params = _f.encodeCall(<dynamic>[]);
     var finalized = tx.finalize(
-        data: params,
+        data: _params,
         from: await wallet.privateKey.extractAddress(),
         to: $contract.address);
     var txid = await $client.sendTransaction(wallet.privateKey, finalized,
