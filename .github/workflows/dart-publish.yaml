@@ -8,10 +8,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - run: cd web3_contract_generator
       - name: '>> Dart package <<'
         uses: k-paxian/dart-package-publisher@master
         with:
-          dryRunOnly: true
+          dryRunOnly: false
           accessToken: ${{ secrets.PUB_LISH_OAUTH_ACCESS_TOKEN }}
           refreshToken: ${{ secrets.PUB_LISH_OAUTH_REFRESH_TOKEN }}
+          relativePath: web3_contract_generator
