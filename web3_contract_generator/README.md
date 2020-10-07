@@ -8,9 +8,10 @@ it's pretty fresh, maybe don't rely on this for production code yet.
 
 Add these dependencies:
 
-* `dartz` -- needed for Tuple types (broadly useful, too)
+* `dartz` -- Needed for Tuple types (broadly useful, too)
 * `web3dart`
-* `web3_contract_generator` -- This needs to be a dependency currently; the package will be split into a dependency and dev_dependency soon.
+* `web3_contract_generator` -- Dev dependency
+* `web3_contract` -- Dependency
 
 Then run: `pub run build_runner build`
 
@@ -39,7 +40,7 @@ class SVIndexContract {
   EthereumAddress $addr;
   DeployedContract $contract;
   Web3Client $client;
-  SVIndexContract(String address, Web3Client this.$client) {
+  SVIndexContract(String address, this.$client) {
     $addr = EthereumAddress.fromHex(address);
     $contract = DeployedContract($abi, $addr);
   }
