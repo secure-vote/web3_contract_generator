@@ -25,46 +25,6 @@ final EthereumAddress zeroAddr =
 EthereumAddress addrOrDefault(EthereumAddress nullableAddr) =>
     nullableAddr ?? zeroAddr;
 
-class TransactionNotPayable extends WithZeroAddr {
-  int maxGas;
-  BigInt gasPrice;
-  int nonce;
-  TransactionNotPayable({this.maxGas = 7000000, this.gasPrice, this.nonce});
-
-  Transaction finalize(
-          {@required Uint8List data,
-          @required EthereumAddress from,
-          @required EthereumAddress to}) =>
-      Transaction(
-          data: data,
-          from: from,
-          gasPrice: EtherAmount.inWei(gasPrice ?? BigInt.one),
-          maxGas: maxGas,
-          to: to,
-          value: EtherAmount.zero());
-}
-
-class TransactionPayable extends WithZeroAddr {
-  int maxGas;
-  BigInt gasPrice;
-  int nonce;
-  EtherAmount value;
-  TransactionPayable(
-      {this.maxGas = 7000000, this.gasPrice, this.nonce, @required this.value});
-
-  Transaction finalize(
-          {@required Uint8List data,
-          @required EthereumAddress from,
-          @required EthereumAddress to}) =>
-      Transaction(
-          data: data,
-          from: from,
-          gasPrice: EtherAmount.inWei(gasPrice ?? BigInt.one),
-          maxGas: maxGas,
-          to: to,
-          value: value);
-}
-
 Future<T> waitFor<T>(Future<T> Function() fut_gen,
     {Duration timeout = const Duration(milliseconds: 10 * 1000),
     num delta = 0.1}) async {
