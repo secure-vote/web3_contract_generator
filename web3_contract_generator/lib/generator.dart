@@ -61,8 +61,7 @@ String genWholeW3ContractFile(
     "import 'dart:typed_data';",
     "import 'package:dartz/dartz.dart';",
     "import 'package:web3dart/web3dart.dart';",
-    //"import 'package:web3dart/credentials.dart';",
-    "import 'package:web3_contract_generator/helpers.dart';",
+    "import 'package:web3_contract/web3_contract.dart';",
     '',
     'const ${abiConstName} = """${abiString}""";',
     ''
@@ -74,7 +73,7 @@ String genWholeW3ContractFile(
     '  ${late_keyword_padded}EthereumAddress \$addr;',
     '  ${late_keyword_padded}DeployedContract \$contract;',
     '  Web3Client \$client;',
-    '  ${contractClassName}(String address, Web3Client this.\$client) {',
+    '  ${contractClassName}(String address, this.\$client) {',
     '    \$addr = EthereumAddress.fromHex(address);',
     '    \$contract = DeployedContract(\$abi, \$addr);',
     '  }',
@@ -110,7 +109,7 @@ String abiFuncToMethod(ContractFunction func, {bool nullable = false}) {
           func.isConstant ? abiOutputToReturnType(func.outputs) : 'String',
           nullable: nullable),
       ' ',
-      !func.name.isEmpty
+      func.name.isNotEmpty
           ? func.name
           : func.isConstructor
               ? '\$constructor'
@@ -131,7 +130,7 @@ String abiFuncToMethod(ContractFunction func, {bool nullable = false}) {
     ].join(''),
     [
       'var _f = ',
-      !func.name.isEmpty
+      func.name.isNotEmpty
           ? '\$contract.function("${func.name}")'
           : '\$abi.functions.where((f) => f.name == "${func.name}" && f.${func.isConstructor ? "isConstructor" : "isDefault"}).first',
       ';'

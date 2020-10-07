@@ -3,7 +3,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:dartz/dartz.dart';
 import 'package:web3dart/web3dart.dart';
-import 'package:web3_contract_generator/helpers.dart';
+import 'package:web3_contract/web3_contract.dart';
 
 const EMPTY_ABI = """[]
 """;
@@ -16,7 +16,7 @@ class emptyContract {
   EthereumAddress $addr;
   DeployedContract $contract;
   Web3Client $client;
-  emptyContract(String address, Web3Client this.$client) {
+  emptyContract(String address, this.$client) {
     $addr = EthereumAddress.fromHex(address);
     $contract = DeployedContract($abi, $addr);
   }

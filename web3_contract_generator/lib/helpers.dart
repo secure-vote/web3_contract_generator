@@ -4,7 +4,6 @@ import 'dart:core';
 
 import 'package:dartz/dartz.dart';
 import 'package:logging/logging.dart';
-import 'package:meta/meta.dart';
 import 'package:web3dart/web3dart.dart';
 
 final Logger _log = Logger('web3_contract_generator.helpers');

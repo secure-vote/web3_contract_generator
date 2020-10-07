@@ -3,7 +3,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:dartz/dartz.dart';
 import 'package:web3dart/web3dart.dart';
-import 'package:web3_contract_generator/helpers.dart';
+import 'package:web3_contract/web3_contract.dart';
 
 const EMPTY_ABI = """[]
 """;

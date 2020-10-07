@@ -505,6 +505,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.9.7+15"
+  web3_contract:
+    dependency: "direct dev"
+    description:
+      path: "../web3_contract"
+      relative: true
+    source: path
+    version: "0.1.1"
   web3dart:
     dependency: "direct main"
     description:

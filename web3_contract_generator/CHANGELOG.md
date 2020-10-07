@@ -1,3 +1,8 @@
+## 0.1.2
+
+- Fix half-completed separation of web3_contract_generator and web3_contract
+- Fix up some lints in generated code
+
 ## 0.1.1
 
 - Add a half decent readme
@@ -14,4 +19,3 @@
   - Type safety on the methods
   - Populates useful types for function arguments and return types
   - Attempts code generation for all .abi and .abi.json files in the package tree (or at least `lib`)
-
