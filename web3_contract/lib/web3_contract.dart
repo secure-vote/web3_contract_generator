@@ -1,7 +1,5 @@
 import 'dart:typed_data';
 
-import 'package:meta/meta.dart';
-
 import 'package:web3dart/contracts.dart';
 import 'package:web3dart/credentials.dart';
 import 'package:web3dart/web3dart.dart';
