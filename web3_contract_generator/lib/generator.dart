@@ -76,8 +76,6 @@ String genWholeW3ContractFile(
     '  ContractAbi get \$abi = \$contract.abi;', // ;',
     '  Web3Client \$client;',
     '  ${contractClassName}(String address, this.\$client) : \$contract = DeployedContract(ContractAbi.fromJson(${abiConstName}, \'$fileNameNoExt\'), EthereumAddress.fromHex(address)) {',
-    '    \$addr =;',
-    '    \$contract = DeployedContract(\$abi, \$addr);',
     '  }',
     '',
     //'Future<T> txFactory<T>() async {}',
