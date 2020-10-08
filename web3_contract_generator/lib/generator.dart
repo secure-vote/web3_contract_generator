@@ -14,6 +14,7 @@ final Logger _log = Logger('web3_contract_generator');
 //   FutureOr<String> generate(LibraryReader lib, BuildStep step) {}
 // }
 
+/// The builder class which does the code generation.
 class Web3ContractGenerator extends Builder {
   bool nonNullableEnabled;
 
@@ -43,6 +44,7 @@ class Web3ContractGenerator extends Builder {
   }
 }
 
+/// Generate the whole output file as a string.
 String genWholeW3ContractFile(
   String abiString,
   String fileNameWithExt, {
@@ -63,18 +65,18 @@ String genWholeW3ContractFile(
     "import 'package:web3dart/web3dart.dart';",
     "import 'package:web3_contract/web3_contract.dart';",
     '',
-    'const ${abiConstName} = """${abiString}""";',
+    'const ${abiConstName} = \'\'\'${abiString.trim()}\'\'\';',
     ''
         'final EthereumAddress _zeroAddr = EthereumAddress(Uint8List(20)..fillRange(0, 20, 0));',
     'EthereumAddress _addrOrDefault(EthereumAddress addr) => addr ?? _zeroAddr;',
     '',
     'class ${contractClassName} {',
-    '  final ContractAbi \$abi = ContractAbi.fromJson(${abiConstName}, "$fileNameNoExt");',
-    '  ${late_keyword_padded}EthereumAddress \$addr;',
-    '  ${late_keyword_padded}DeployedContract \$contract;',
+    '  DeployedContract \$contract;',
+    '  EthereumAddress get \$addr => \$contract.addr;',
+    '  ContractAbi get \$abi = \$contract.abi;', // ;',
     '  Web3Client \$client;',
-    '  ${contractClassName}(String address, this.\$client) {',
-    '    \$addr = EthereumAddress.fromHex(address);',
+    '  ${contractClassName}(String address, this.\$client) : \$contract = DeployedContract(ContractAbi.fromJson(${abiConstName}, \'$fileNameNoExt\'), EthereumAddress.fromHex(address)) {',
+    '    \$addr =;',
     '    \$contract = DeployedContract(\$abi, \$addr);',
     '  }',
     '',
@@ -131,8 +133,8 @@ String abiFuncToMethod(ContractFunction func, {bool nullable = false}) {
     [
       'var _f = ',
       func.name.isNotEmpty
-          ? '\$contract.function("${func.name}")'
-          : '\$abi.functions.where((f) => f.name == "${func.name}" && f.${func.isConstructor ? "isConstructor" : "isDefault"}).first',
+          ? '\$contract.function(\'${func.name}\')'
+          : '\$abi.functions.where((f) => f.name == \'${func.name}\' && f.${func.isConstructor ? "isConstructor" : "isDefault"}).first',
       ';'
     ].join(''),
     ...(func.isConstant
@@ -219,4 +221,5 @@ Tuple2<FunctionParameter, String> paramAddParamName(
   return Tuple2(param, param.name.isEmpty ? 'param_${nth_param}' : param.name);
 }
 
+/// The generator the builder actually uses.
 Builder web3ContractGen(BuilderOptions opts) => Web3ContractGenerator();

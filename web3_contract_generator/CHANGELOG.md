@@ -1,3 +1,8 @@
+## 0.1.3
+
+- Minor refactoring.
+- Some docs.
+
 ## 0.1.2
 
 - Fix half-completed separation of web3_contract_generator and web3_contract

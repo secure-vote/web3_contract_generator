@@ -25,6 +25,7 @@ void main() async {
     test('web3 generator handles ${k}', () async {
       expect(genWholeW3ContractFile(sources[k], p.split('${k}.abi').last),
           outputs[k]);
+      expect()
     });
   }
 }

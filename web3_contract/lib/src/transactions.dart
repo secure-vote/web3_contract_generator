@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:meta/meta.dart';
 import 'package:web3dart/web3dart.dart';
 
+/// A partial transaction where the value is always 0. The user can optionally specify maxGas, gasPrice, and nonce.
 class TransactionNotPayable {
   int maxGas;
   BigInt gasPrice;
@@ -22,6 +23,7 @@ class TransactionNotPayable {
           value: EtherAmount.zero());
 }
 
+/// A partial transaction where the value is set by the user, which must be specified. The user can optionally specify maxGas, gasPrice, and nonce.
 class TransactionPayable {
   int maxGas;
   BigInt gasPrice;

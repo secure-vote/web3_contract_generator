@@ -8,17 +8,6 @@ import 'package:web3dart/web3dart.dart';
 
 final Logger _log = Logger('web3_contract_generator.helpers');
 
-class WithZeroAddr {
-  static EthereumAddress zeroAddr =
-      EthereumAddress(Uint8List(20)..fillRange(0, 20, 0));
-
-  const WithZeroAddr();
-
-  static EthereumAddress addrOrDefault(EthereumAddress nullableAddr) {
-    return nullableAddr ?? zeroAddr;
-  }
-}
-
 final EthereumAddress zeroAddr =
     EthereumAddress(Uint8List(20)..fillRange(0, 20, 0));
 EthereumAddress addrOrDefault(EthereumAddress nullableAddr) =>

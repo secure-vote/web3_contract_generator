@@ -5,8 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:web3_contract/web3_contract.dart';
 
-const EMPTY_ABI = """[]
-""";
+const EMPTY_ABI = '''[]''';
 final EthereumAddress _zeroAddr =
     EthereumAddress(Uint8List(20)..fillRange(0, 20, 0));
 EthereumAddress _addrOrDefault(EthereumAddress addr) => addr ?? _zeroAddr;

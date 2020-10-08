@@ -6,17 +6,21 @@ import 'package:web3dart/web3dart.dart';
 import './src/transactions.dart';
 export './src/transactions.dart';
 
+/// The zero address: `0x0000000000000000000000000000000000000000`.
 final EthereumAddress _zeroAddr =
     EthereumAddress(Uint8List(20)..fillRange(0, 20, 0));
+
+/// If the provided `EthereumAddress` is `null`, the zero address is returned instead.
 EthereumAddress _addrOrDefault(EthereumAddress addr) => addr ?? _zeroAddr;
 
-class BaseContract {
+/// Not yet in use. A base contract class which abstracts the common functionality used by other methods.
+abstract class BaseContract {
   ContractAbi $abi;
   EthereumAddress $addr;
   DeployedContract $contract;
   Web3Client $client;
 
-  Future<T> _doCall<T>(String funcName, List<dynamic> params,
+  Future<T> doContractCall<T>(String funcName, List<dynamic> params,
       {EthereumAddress from}) async {
     var _f = $contract.function(funcName);
     var _params = <dynamic>[];
@@ -29,7 +33,7 @@ class BaseContract {
     return result[0] as T;
   }
 
-  Future<String> _doPayableTx<T>(String funcName, List<dynamic> params,
+  Future<String> doContractPayableTx<T>(String funcName, List<dynamic> params,
       Wallet wallet, TransactionPayable tx) async {
     var _f = $contract.function(funcName);
     var _params = _f.encodeCall(params);
@@ -42,7 +46,7 @@ class BaseContract {
     return txid;
   }
 
-  Future<String> _doNonPayableTx(String funcName, List<dynamic> params,
+  Future<String> doContractNonPayableTx(String funcName, List<dynamic> params,
       Wallet wallet, TransactionNotPayable tx) async {
     var _f = $contract.function(funcName);
     var _params = _f.encodeCall(params);
