@@ -1,7 +1,7 @@
 targets:
-    $default: {}
-#        builders:
-#            web3_contract_generator|web3_gen: {}
+    $default:
+       builders:
+           web3_contract_generator|web3_gen: {}
 
 builders:
   web3_gen:
