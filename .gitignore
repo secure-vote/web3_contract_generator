@@ -9,3 +9,5 @@ build/
 doc/api/
 
 abi_types.*
+
+*.w3.dart
