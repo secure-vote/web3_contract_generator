@@ -1,3 +1,7 @@
+## 0.1.3
+
+- add waitForTxReceipt function
+
 ## 0.1.2
 
 - Minor refactoring.

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:meta/meta.dart';
@@ -43,4 +44,22 @@ class TransactionPayable {
           maxGas: maxGas,
           to: to,
           value: value);
+}
+
+final duration30s = Duration(seconds: 30);
+
+Future<TransactionReceipt> waitForTxReceipt(Web3Client web3, String txid,
+    {int timeoutMs = 30000}) async {
+  var timeout = Duration(milliseconds: timeoutMs);
+  var start = DateTime.now();
+  var txr = await web3.getTransactionReceipt(txid);
+  while (txr == null) {
+    if (DateTime.now().difference(start) > timeout) {
+      throw TimeoutException(
+          'Waiting for transaction receipt (for txid: $txid) timed out. Waited $timeout');
+    }
+    await Future<void>.delayed(Duration(milliseconds: 50));
+    txr = await web3.getTransactionReceipt(txid);
+  }
+  return txr;
 }

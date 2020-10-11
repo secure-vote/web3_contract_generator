@@ -1,6 +1,6 @@
 name: web3_contract
 description: Supporting code for generated dart classes corresponding to ABIs of Solidity smart contracts
-version: '0.1.2'
+version: '0.1.3'
 homepage: https://github.com/secure-vote/web3_contract_generator
 repository: https://github.com/secure-vote/web3_contract_generator
 
