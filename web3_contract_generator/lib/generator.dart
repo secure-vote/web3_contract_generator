@@ -120,7 +120,7 @@ String abiFuncToMethod(ContractFunction func, {bool nullable = false}) {
         ...(func.isConstant
             ? <String>['{EthereumAddress${nullable ? "?" : ""} from}']
             : [
-                'Wallet wallet',
+                'Credentials privateKey',
                 (func.isPayable
                     ? 'TransactionPayable tx'
                     : 'TransactionNotPayable tx')
@@ -164,8 +164,8 @@ String abiFuncToMethod(ContractFunction func, {bool nullable = false}) {
               paramNames.join(', '),
               ']);',
             ].join(''),
-            'var finalized = tx.finalize(data: _params, from: await wallet.privateKey.extractAddress(), to: \$contract.address);',
-            'var txid = await \$client.sendTransaction(wallet.privateKey, finalized, fetchChainIdFromNetworkId: true);',
+            'var finalized = tx.finalize(data: _params, from: await privateKey.extractAddress(), to: \$contract.address);',
+            'var txid = await \$client.sendTransaction(privateKey, finalized, fetchChainIdFromNetworkId: true);',
             // 'var txr = waitFor(() => \$client.getTransactionReceipt(txid));',
             'return txid;'
           ]),
