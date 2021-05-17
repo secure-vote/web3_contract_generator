@@ -1,3 +1,7 @@
+## 0.1.5
+
+- Update READMEs to specify file types, dependencies (moreso), and be more explicit about what formats are okay.
+
 ## 0.1.4
 
 - Change payable txs to use a `Credentials` parameter, not `Wallet`

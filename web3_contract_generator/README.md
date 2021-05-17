@@ -2,16 +2,23 @@
 
 This package generates dart files to represent ethereum dapps and provide type safety.
 
+You can put `.abi` files almost wherever, though I use `lib/abi/`.
+
+Your ABIs should be **json** formatted as a list. For examples see [the test directory](https://github.com/secure-vote/web3_contract_generator/tree/5e8bef6d611c75708fae3f035a9e29d025cbc12a/web3_contract_generator/test/contracts).
+
+There's a bug or issue with build_runner or something that means `.abi.json` files don't work atm. Sorry about that. Make sure your ABI extension is just `.abi`.
+
 ## Usage
 
-it's pretty fresh, maybe don't rely on this for production code yet.
+it's pretty fresh (but seems to work fine), maybe don't rely on this for production code yet.
 
 Add these dependencies:
 
-* `dartz` -- Needed for Tuple types (broadly useful, too)
-* `web3dart`
-* `web3_contract_generator` -- Dev dependency
-* `web3_contract` -- Dependency
+* `dart pub add dartz` -- Needed for Tuple types (broadly useful, too)
+* `dart pub add web3dart`
+* `dart pub add -d build_runner` -- for codegen
+* `dart pub add -d web3_contract_generator` -- Dev dependency
+* `dart pub add web3_contract` -- support lib for generated code
 
 Then run: `pub run build_runner build`
 
@@ -27,7 +34,6 @@ targets:
                 generate_for:
                     include:
                     - "**/*.abi"
-                    - "**/*.abi.json"
 ```
 
 ## Generated Code

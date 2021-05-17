@@ -23,8 +23,10 @@ class Web3ContractGenerator extends Builder {
   @override
   final buildExtensions = {
     '.abi': ['.w3.dart'],
-    '.abi.json': ['.w3.dart'],
+    //'.abi.json': ['.w3.dart'],
   };
+
+  // Note: build_runner complains if we try to use both .abi and .abi.json
 
   @override
   Future<void> build(BuildStep buildStep) async {

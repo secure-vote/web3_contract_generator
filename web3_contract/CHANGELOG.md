@@ -1,3 +1,7 @@
+## 0.1.5
+
+- Update readme with a more useful link to docs
+
 ## 0.1.3
 
 - add waitForTxReceipt function
